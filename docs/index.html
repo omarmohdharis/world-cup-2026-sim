@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Cup 2026 — simulation dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1220; --card: #141d31; --card-hi: #1b2745; --line: #243453;
+    --text: #e8edf7; --muted: #8fa0bf; --gold: #e8c35a; --green: #4ade80;
+    --amber: #f0a83a;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: Inter, system-ui, sans-serif; line-height: 1.5;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px 60px; }
+  header { text-align: center; padding: 56px 0 8px; }
+  header h1 { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -0.5px; }
+  header h1 span { color: var(--gold); }
+  header p { color: var(--muted); margin-top: 8px; font-size: 14px; }
+  h2 { font-size: 20px; font-weight: 600; margin: 52px 0 6px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+
+  .hero {
+    margin: 36px auto 0; max-width: 460px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 16px; padding: 28px;
+    text-align: center; position: relative;
+  }
+  .hero .label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+  .hero img { width: 96px; border-radius: 8px; margin: 16px 0 10px; box-shadow: 0 6px 24px rgba(0,0,0,.45); }
+  .hero .name { font-size: 30px; font-weight: 800; }
+  .hero .odds { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+  .odds-list { display: flex; flex-direction: column; gap: 8px; }
+  .odds-row { display: grid; grid-template-columns: 170px 1fr 52px; align-items: center; gap: 12px; font-size: 14px; }
+  .odds-row .t { display: flex; align-items: center; gap: 9px; font-weight: 500; }
+  .bar { height: 10px; background: var(--card-hi); border-radius: 5px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--gold); border-radius: 5px; }
+  .odds-row .v { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  .flag { width: 24px; height: 18px; object-fit: cover; border-radius: 3px; flex-shrink: 0; }
+
+  .groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); gap: 14px; }
+  .gcard { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .gcard h3 { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .grow { display: grid; grid-template-columns: 14px 24px 1fr 38px 42px; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+  .grow .rk { color: var(--muted); font-size: 12px; }
+  .grow .nm { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .grow .pts { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  .grow .adv { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .grow.q1 .adv, .grow.q2 .adv { color: var(--green); }
+  .grow.q3 .adv { color: var(--amber); }
+  .grow.out { opacity: 0.55; }
+  .gnote { font-size: 11.5px; color: var(--muted); margin-top: 8px; }
+  .legend { display: flex; gap: 18px; font-size: 12.5px; color: var(--muted); margin-bottom: 16px; flex-wrap: wrap; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+
+  .bracket-scroll { overflow-x: auto; padding-bottom: 12px; }
+  .bracket { display: flex; gap: 14px; min-width: 1480px; align-items: stretch; }
+  .round { display: flex; flex-direction: column; justify-content: space-around; gap: 10px; flex: 1; }
+  .round-title { text-align: center; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .match { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 12.5px; }
+  .mrow { display: grid; grid-template-columns: 20px 1fr 36px; align-items: center; gap: 7px; padding: 7px 9px; }
+  .mrow + .mrow { border-top: 1px solid var(--line); }
+  .mrow img { width: 20px; height: 15px; object-fit: cover; border-radius: 2px; }
+  .mrow .p { text-align: right; color: var(--muted); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .mrow.w { background: var(--card-hi); font-weight: 600; }
+  .mrow.w .p { color: var(--gold); }
+  .final-col { display: flex; flex-direction: column; justify-content: center; gap: 12px; flex: 1.15; }
+  .final-col .match { border-color: var(--gold); }
+  .final-col .trophy { text-align: center; font-size: 12px; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; }
+  footer { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted); font-size: 13px; }
+  footer a { color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>World Cup <span>2026</span> — who wins?</h1>
+    <p id="meta"></p>
+  </header>
+
+  <div class="hero" id="hero"></div>
+
+  <h2>Title chances</h2>
+  <p class="sub">Share of simulated tournaments won — top 12 teams</p>
+  <div class="odds-list" id="odds"></div>
+
+  <h2>Predicted group standings</h2>
+  <p class="sub">Teams ordered by expected points across all simulations</p>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--green)"></i>Top two — advance directly</span>
+    <span><i class="dot" style="background:var(--amber)"></i>Third — may advance among 8 best</span>
+    <span style="margin-left:auto">% = chance of reaching the knockouts</span>
+  </div>
+  <div class="groups" id="groups"></div>
+
+  <h2>Predicted knockout bracket</h2>
+  <p class="sub">Most likely standings fill the official FIFA bracket; the model's favorite advances at each step. Percentages are each pick's chance of winning that tie.
+  This is one point-estimate path — it can crown a different winner than the overall title chances above when a tie is close to a coin flip.</p>
+  <div class="bracket-scroll"><div class="bracket" id="bracket"></div></div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+const SHORT = {
+  "Bosnia and Herzegovina": "Bosnia", "Czech Republic": "Czechia",
+  "United States": "USA", "South Africa": "South Africa",
+  "South Korea": "South Korea", "New Zealand": "New Zealand",
+};
+const nm = t => SHORT[t] || t;
+const flag = (t, cls) => `<img class="${cls || 'flag'}" src="https://flagcdn.com/w40/${DATA.codes[t]}.png" alt="${t} flag" loading="lazy">`;
+const pct = x => Math.round(x * 100) + "%";
+
+document.getElementById("meta").textContent =
+  `${DATA.nSims.toLocaleString()} Monte Carlo simulations · Elo ratings + Dixon-Coles Poisson model · updated ${DATA.generated}`;
+
+const best = DATA.titleOdds[0];
+document.getElementById("hero").innerHTML = `
+  <div class="label">Most likely champion</div>
+  <img src="https://flagcdn.com/w160/${DATA.codes[best.team]}.png" alt="${best.team} flag">
+  <div class="name">${best.team}</div>
+  <div class="odds">wins the tournament in ${(best.champion * 100).toFixed(1)}% of simulations · reaches the final in ${pct(best.final)}</div>`;
+
+document.getElementById("odds").innerHTML = DATA.titleOdds.slice(0, 12).map(o => `
+  <div class="odds-row">
+    <span class="t">${flag(o.team)}${nm(o.team)}</span>
+    <span class="bar"><i style="width:${Math.max(1.5, o.champion / DATA.titleOdds[0].champion * 100)}%"></i></span>
+    <span class="v">${(o.champion * 100).toFixed(1)}%</span>
+  </div>`).join("");
+
+document.getElementById("groups").innerHTML = Object.keys(DATA.groups).sort().map(g => {
+  const rows = DATA.groups[g].map((r, i) => `
+    <div class="grow ${i < 2 ? "q" + (i + 1) : i === 2 ? "q3" : "out"}">
+      <span class="rk">${i + 1}</span>${flag(r.team)}
+      <span class="nm">${nm(r.team)}</span>
+      <span class="pts">${r.expPts.toFixed(1)}</span>
+      <span class="adv">${pct(r.advance)}</span>
+    </div>`).join("");
+  const playedHere = DATA.played.filter(m =>
+    DATA.groups[g].some(r => r.team === m.home || r.team === m.away));
+  const note = playedHere.length
+    ? `<div class="gnote">Played: ${playedHere.map(m => `${nm(m.home)} ${m.score} ${nm(m.away)}`).join(" · ")}</div>` : "";
+  return `<div class="gcard"><h3>Group ${g} <span style="float:right;color:var(--muted);font-weight:400">exp&nbsp;pts&nbsp;·&nbsp;adv</span></h3>${rows}${note}</div>`;
+}).join("");
+
+const byNo = {};
+["r32", "r16", "qf", "sf", "final"].forEach(r => DATA.bracket[r].forEach(m => byNo[m.match] = m));
+const matchCard = no => {
+  const m = byNo[no];
+  const pa = Math.round(m.pA * 100);
+  const labels = pa === 50
+    ? [(m.pA * 100).toFixed(1) + "%", ((1 - m.pA) * 100).toFixed(1) + "%"]
+    : [pa + "%", (100 - pa) + "%"];
+  const row = (t, p) => `
+    <div class="mrow ${m.winner === t ? "w" : ""}">
+      ${flag(t)}<span>${nm(t)}</span><span class="p">${p}</span>
+    </div>`;
+  return `<div class="match">${row(m.a, labels[0])}${row(m.b, labels[1])}</div>`;
+};
+const col = (title, nos) =>
+  `<div class="round"><div><div class="round-title">${title}</div></div>${nos.map(matchCard).join("")}<div></div></div>`;
+
+const champ = DATA.bracket.champion;
+document.getElementById("bracket").innerHTML = [
+  col("Round of 32", [74, 77, 73, 75, 83, 84, 81, 82]),
+  col("Round of 16", [89, 90, 93, 94]),
+  col("Quarterfinals", [97, 98]),
+  col("Semifinal", [101]),
+  `<div class="final-col"><div class="round-title">Final · July 19, MetLife Stadium</div>${matchCard(104)}
+     <div class="trophy">🏆 ${champ}</div></div>`,
+  col("Semifinal", [102]),
+  col("Quarterfinals", [99, 100]),
+  col("Round of 16", [91, 92, 95, 96]),
+  col("Round of 32", [76, 78, 79, 80, 86, 88, 85, 87]),
+].join("");
+
+document.getElementById("foot").innerHTML =
+  `Built from <a href="https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017">international results since 1872</a>.
+   Method: eloratings.net-style Elo (K 20–60, home advantage 100) feeds a double-Poisson goal model with a Dixon–Coles
+   low-score correction; ${DATA.nSims.toLocaleString()} tournament simulations update Elo and form after every simulated match.
+   Group A's real results are locked in. Knockout draws resolved by Elo-weighted extra time/penalties.`;
+</script>
+</body>
+</html>
