@@ -25,6 +25,7 @@ NAME_MAP = {
     "Congo DR": "DR Congo",
     "Bosnia-Herzegovina": "Bosnia and Herzegovina",
     "Curaçao": "Curaçao",
+    "Czechia": "Czech Republic",
 }
 
 
