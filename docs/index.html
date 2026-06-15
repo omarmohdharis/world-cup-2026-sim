@@ -78,6 +78,19 @@
   .final-col .trophy { text-align: center; font: italic 400 19px var(--serif); }
   .final-col .trophy b { color: var(--green); font-weight: 400; }
 
+  /* results ticker */
+  .ticker-wrap { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-top: 20px; display: flex; overflow: hidden; height: 36px; align-items: center; }
+  .ticker-label { font: 500 10px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 0 14px; height: 100%; display: flex; align-items: center; flex-shrink: 0; }
+  .ticker-track { display: flex; gap: 0; white-space: nowrap; animation: ticker-scroll 28s linear infinite; }
+  .ticker-track:hover { animation-play-state: paused; }
+  .ticker-item { display: inline-flex; align-items: center; gap: 7px; font: 400 12px/1 var(--mono); padding: 0 28px; border-right: 1px solid var(--rule); color: var(--ink); }
+  .ticker-item img { width: 18px; height: 13px; object-fit: cover; outline: 1px solid var(--rule); }
+  .ticker-item .score { font-weight: 500; color: var(--green); padding: 0 2px; }
+  @keyframes ticker-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
   footer { margin-top: 80px; border-top: 3px solid var(--ink); padding-top: 16px; font: 400 12px/1.9 var(--mono); color: var(--muted); }
   footer a { color: var(--green); }
 </style>
@@ -88,6 +101,11 @@
     <div class="kicker" id="meta"></div>
     <h1>The 2026 World Cup, <em>simulated.</em></h1>
   </header>
+
+  <div class="ticker-wrap" id="ticker-wrap">
+    <div class="ticker-label">Results</div>
+    <div class="ticker-track" id="ticker"></div>
+  </div>
 
   <div id="hero"></div>
 
@@ -117,6 +135,25 @@ const SHORT = {
 const nm = t => SHORT[t] || t;
 const flag = t => `<img class="flag" src="https://flagcdn.com/w40/${DATA.codes[t]}.png" alt="${t} flag" loading="lazy">`;
 const pct = x => Math.round(x * 100) + "%";
+
+// Results ticker — load live results from results.json, fall back to DATA.played.
+function buildTicker(results) {
+  if (!results.length) { document.getElementById("ticker-wrap").style.display = "none"; return; }
+  const items = results.map(m =>
+    `<div class="ticker-item">
+      ${flag(m.home)}<span>${nm(m.home)}</span>
+      <span class="score">${m.score}</span>
+      <span>${nm(m.away)}</span>${flag(m.away)}
+    </div>`
+  ).join("");
+  const track = document.getElementById("ticker");
+  track.innerHTML = items + items; // duplicate for seamless loop
+}
+
+fetch("results.json")
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(buildTicker)
+  .catch(() => buildTicker(DATA.played));
 
 document.getElementById("meta").textContent =
   `${DATA.nSims.toLocaleString()} monte carlo simulations · elo + dixon-coles poisson · updated ${DATA.generated}`;
