@@ -80,8 +80,8 @@
 
   /* results ticker */
   .ticker-wrap { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-top: 20px; display: flex; overflow: hidden; height: 36px; align-items: center; }
-  .ticker-label { font: 500 10px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 0 14px; height: 100%; display: flex; align-items: center; flex-shrink: 0; }
-  .ticker-track { display: flex; gap: 0; white-space: nowrap; animation: ticker-scroll 28s linear infinite; }
+  .ticker-label { font: 500 10px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 0 14px; height: 100%; display: flex; align-items: center; flex-shrink: 0; position: relative; z-index: 2; }
+  .ticker-track { display: flex; gap: 0; white-space: nowrap; animation: ticker-scroll 55s linear infinite; }
   .ticker-track:hover { animation-play-state: paused; }
   .ticker-item { display: inline-flex; align-items: center; gap: 7px; font: 400 12px/1 var(--mono); padding: 0 28px; border-right: 1px solid var(--rule); color: var(--ink); }
   .ticker-item img { width: 18px; height: 13px; object-fit: cover; outline: 1px solid var(--rule); }
