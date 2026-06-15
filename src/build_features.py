@@ -22,6 +22,7 @@ Features per match
   *_form5  / *_form10         mean points (3/1/0) over team's last 5 / 10 games
   *_gf5, *_ga5                mean goals for / against over last 5 games
   *_rest_days                 days since the team's previous match (capped at 60)
+  *_elo_delta10               pre-match Elo minus Elo 10 matches ago (momentum)
   outcome                     target: home_win / draw / away_win
 """
 
@@ -35,7 +36,7 @@ OUT = Path(__file__).resolve().parents[1] / "data" / "processed"
 
 
 def team_long_frame(matches: pd.DataFrame) -> pd.DataFrame:
-    """One row per (team, match): points, goals for/against."""
+    """One row per (team, match): points, goals for/against, pre-match Elo."""
     home = pd.DataFrame(
         {
             "match_id": matches.index,
@@ -43,6 +44,7 @@ def team_long_frame(matches: pd.DataFrame) -> pd.DataFrame:
             "date": matches.date,
             "gf": matches.home_score,
             "ga": matches.away_score,
+            "elo": matches.home_elo,
         }
     )
     away = pd.DataFrame(
@@ -52,6 +54,7 @@ def team_long_frame(matches: pd.DataFrame) -> pd.DataFrame:
             "date": matches.date,
             "gf": matches.away_score,
             "ga": matches.home_score,
+            "elo": matches.away_elo,
         }
     )
     long = pd.concat([home, away]).sort_values(["team", "date", "match_id"])
@@ -79,6 +82,11 @@ def rolling_features(long: pd.DataFrame) -> pd.DataFrame:
     long["rest_days"] = g.date.transform(
         lambda s: s.diff().dt.days
     ).clip(upper=60)
+    # Elo change over the last 10 matches (shift avoids using current match's own Elo).
+    # shift(1) = Elo at previous match, shift(10) = Elo 9 matches before that.
+    long["elo_delta10"] = g.elo.transform(
+        lambda s: s.shift(1) - s.shift(10)
+    )
     return long
 
 
@@ -89,7 +97,7 @@ def main():
     matches["k"] = matches.tournament.map(elo.k_factor)
 
     long = rolling_features(team_long_frame(matches))
-    feat_cols = ["form5", "form10", "gf5", "ga5", "rest_days"]
+    feat_cols = ["form5", "form10", "gf5", "ga5", "rest_days", "elo_delta10"]
     indexed = long.set_index(["match_id", "team"])[feat_cols]
     for side in ("home", "away"):
         side_feats = indexed.loc[

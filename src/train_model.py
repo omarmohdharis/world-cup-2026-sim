@@ -46,7 +46,7 @@ MODELS = Path(__file__).resolve().parents[1] / "models"
 TRAIN_START = "2000-01-01"
 TEST_START = "2024-01-01"
 MAX_GOALS = 12
-FEATURES = ["elo_gap100", "is_home", "gf5", "opp_ga5", "rest_wk"]
+FEATURES = ["elo_gap100", "is_home", "gf5", "opp_ga5", "rest_wk", "elo_delta100"]
 
 
 def long_design(matches: pd.DataFrame) -> pd.DataFrame:
@@ -63,6 +63,7 @@ def long_design(matches: pd.DataFrame) -> pd.DataFrame:
                     "gf5": matches[f"{side}_gf5"],
                     "opp_ga5": matches[f"{opp}_ga5"],
                     "rest_wk": matches[f"{side}_rest_days"] / 7,
+                    "elo_delta100": matches[f"{side}_elo_delta10"].fillna(0) / 100,
                 }
             )
         )

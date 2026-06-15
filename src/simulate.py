@@ -103,7 +103,7 @@ class Model:
         def lam(me, opp, is_home):
             rest = min((date - me.last_date).days, 60) / 7
             x = np.array([1.0, (me.elo - opp.elo) / 100, float(is_home),
-                          me.gf5(), opp.ga5(), rest])
+                          me.gf5(), opp.ga5(), rest, me.elo_delta10() / 100])
             return float(np.exp(x @ self.beta))
         return lam(s_home, s_away, home_is_home), lam(s_away, s_home, False)
 
@@ -118,11 +118,12 @@ class Model:
 
 
 class TeamState:
-    __slots__ = ("elo", "recent", "last_date")
+    __slots__ = ("elo", "recent", "elo_history", "last_date")
 
-    def __init__(self, rating, recent, last_date):
+    def __init__(self, rating, recent, elo_history, last_date):
         self.elo = rating
-        self.recent = deque(recent, maxlen=5)  # (gf, ga) of last 5 matches
+        self.recent = deque(recent, maxlen=5)       # (gf, ga) of last 5 matches
+        self.elo_history = deque(elo_history, maxlen=10)  # pre-match Elos of last 10
         self.last_date = last_date
 
     def gf5(self):
@@ -131,22 +132,34 @@ class TeamState:
     def ga5(self):
         return sum(a for _, a in self.recent) / len(self.recent)
 
+    def elo_delta10(self):
+        """Current Elo minus Elo at the oldest stored pre-match snapshot."""
+        if len(self.elo_history) < 3:
+            return 0.0
+        return self.elo_history[-1] - self.elo_history[0]
+
     def copy(self):
-        return TeamState(self.elo, self.recent, self.last_date)
+        return TeamState(self.elo, self.recent, self.elo_history, self.last_date)
 
 
 def seed_states(matches: pd.DataFrame) -> dict[str, TeamState]:
-    ratings = elo.run_history(matches)[1]
+    annotated, ratings = elo.run_history(matches)
     states = {}
     for team in TEAM_GROUP:
-        mine = matches[(matches.home_team == team) | (matches.away_team == team)]
+        mine = annotated[(annotated.home_team == team) | (annotated.away_team == team)]
         last5 = mine.tail(5)
         recent = [
             (r.home_score, r.away_score) if r.home_team == team
             else (r.away_score, r.home_score)
             for r in last5.itertuples()
         ]
-        states[team] = TeamState(ratings[team], recent, mine.date.max())
+        # Pre-match Elos of the last 10 games — mirrors build_features.py's elo_delta10.
+        last10 = mine.tail(10)
+        elo_history = [
+            r.home_elo if r.home_team == team else r.away_elo
+            for r in last10.itertuples()
+        ]
+        states[team] = TeamState(ratings[team], recent, elo_history, mine.date.max())
     return states
 
 
@@ -164,6 +177,9 @@ def play(model, states, home, away, date, neutral, rng, knockout=False):
         p_home = elo.expected_score(sh.elo, sa.elo)
         winner = home if rng.random() < p_home else away
 
+    # Snapshot pre-match Elos into history before updating.
+    sh.elo_history.append(sh.elo)
+    sa.elo_history.append(sa.elo)
     sh.elo, sa.elo = elo.update(sh.elo, sa.elo, gh, ga, "FIFA World Cup", neutral)
     sh.recent.append((gh, ga))
     sa.recent.append((ga, gh))
