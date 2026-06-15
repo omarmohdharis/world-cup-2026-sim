@@ -1,0 +1,53 @@
+{
+  "results": [],
+  "movers": [
+    {
+      "team": "England",
+      "before": 0.0824,
+      "after": 0.0768,
+      "delta": -0.0056
+    },
+    {
+      "team": "Argentina",
+      "before": 0.1655,
+      "after": 0.1706,
+      "delta": 0.0051
+    },
+    {
+      "team": "Australia",
+      "before": 0.0165,
+      "after": 0.0207,
+      "delta": 0.0042
+    },
+    {
+      "team": "Brazil",
+      "before": 0.0452,
+      "after": 0.0412,
+      "delta": -0.004
+    },
+    {
+      "team": "Germany",
+      "before": 0.0395,
+      "after": 0.0364,
+      "delta": -0.0031
+    },
+    {
+      "team": "Japan",
+      "before": 0.023,
+      "after": 0.0259,
+      "delta": 0.0029
+    },
+    {
+      "team": "Ecuador",
+      "before": 0.0218,
+      "after": 0.0244,
+      "delta": 0.0026
+    },
+    {
+      "team": "France",
+      "before": 0.0911,
+      "after": 0.0887,
+      "delta": -0.0024
+    }
+  ]
+}

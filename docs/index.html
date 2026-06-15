@@ -91,6 +91,37 @@
     100% { transform: translateX(-50%); }
   }
 
+  /* === upcoming match cards === */
+  .ucard-grid { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 12px; margin-top: 4px; }
+  .ucard { border: 1px solid var(--rule); min-width: 296px; flex-shrink: 0; background: #fff; }
+  .ucard-head { padding: 10px 12px 8px; border-bottom: 1px solid var(--rule); }
+  .ucard-matchup { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .ucard-meta { font: 400 10px var(--mono); color: var(--muted); }
+  .ucard-wdl { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid var(--rule); }
+  .uwdl-col { padding: 8px 4px 6px; text-align: center; }
+  .uwdl-col:not(:last-child) { border-right: 1px solid var(--rule); }
+  .uwdl-label { display: block; font: 400 9px/1.6 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .uwdl-model { display: block; font: 500 15px/1.4 var(--mono); }
+  .uwdl-model.best { color: var(--green); }
+  .uwdl-mkt { display: block; font: 400 10px/1.4 var(--mono); color: var(--faint); }
+  .uwdl-edge { display: block; font: 500 9px/1.4 var(--mono); }
+  .uwdl-edge.pos { color: var(--green); }
+  .uwdl-edge.neg { color: #a33; }
+  .hmap-wrap { padding: 10px 12px 12px; }
+  .hmap-axis-label { font: 400 9px/2 var(--mono); color: var(--faint); letter-spacing: .5px; }
+  .hmap { display: grid; grid-template-columns: 13px repeat(6, 1fr); gap: 2px; }
+  .hax { display: flex; align-items: center; justify-content: center; font: 400 8px var(--mono); color: var(--faint); }
+  .hcell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font: 400 7.5px var(--mono); border-radius: 2px; }
+
+  /* === upset / movers tracker === */
+  .movers-wrap { margin-top: 10px; }
+  .movers-results { font: 400 11px/1.8 var(--mono); color: var(--muted); margin-bottom: 10px; }
+  .movers-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mpill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px 5px 8px; border: 1px solid var(--rule); font: 400 11px var(--mono); }
+  .mpill .mdelta { font-weight: 500; }
+  .mpill .mdelta.up { color: var(--green); }
+  .mpill .mdelta.dn { color: #a33; }
+
   footer { margin-top: 80px; border-top: 3px solid var(--ink); padding-top: 16px; font: 400 12px/1.9 var(--mono); color: var(--muted); }
   footer a { color: var(--green); }
 </style>
@@ -108,6 +139,21 @@
   </div>
 
   <div id="hero"></div>
+
+  <div id="upcoming-section" style="display:none">
+    <h2>Next up</h2>
+    <p class="sub">score probability heatmap · rows = home goals · columns = away goals · market odds shown where available</p>
+    <div class="ucard-grid" id="upcoming-cards"></div>
+  </div>
+
+  <div id="movers-section" style="display:none">
+    <h2>What moved</h2>
+    <p class="sub">how the latest results shifted each team's title probability</p>
+    <div class="movers-wrap">
+      <p class="movers-results" id="movers-results"></p>
+      <div class="movers-pills" id="movers-pills"></div>
+    </div>
+  </div>
 
   <h2>Title chances</h2>
   <p class="sub">share of simulated tournaments won — top 12 of 48 teams</p>
@@ -135,6 +181,92 @@ const SHORT = {
 const nm = t => SHORT[t] || t;
 const flag = t => `<img class="flag" src="https://flagcdn.com/w40/${DATA.codes[t]}.png" alt="${t} flag" loading="lazy">`;
 const pct = x => Math.round(x * 100) + "%";
+
+// === Upcoming match cards ===
+if (DATA.upcomingCards && DATA.upcomingCards.length) {
+  document.getElementById("upcoming-section").style.display = "";
+
+  function buildHmap(grid) {
+    const flat = grid.flat();
+    const maxP = Math.max(...flat);
+    const labels = [0,1,2,3,4,5];
+    let h = '<div class="hmap-axis-label">away →</div><div class="hmap">';
+    h += '<div class="hax"></div>' + labels.map(n => `<div class="hax">${n}</div>`).join("");
+    grid.forEach((row, i) => {
+      h += `<div class="hax">${i}</div>`;
+      row.forEach(p => {
+        const t = maxP > 0 ? p / maxP : 0;
+        const bg = `rgba(22,111,61,${t.toFixed(2)})`;
+        const col = t > 0.45 ? "#fff" : "var(--faint)";
+        h += `<div class="hcell" style="background:${bg};color:${col}" title="${(p*100).toFixed(1)}%">${(p*100).toFixed(1)}</div>`;
+      });
+    });
+    return h + "</div>";
+  }
+
+  fetch("odds.json").then(r => r.ok ? r.json() : []).catch(() => []).then(oddsData => {
+    const oddsMap = {};
+    oddsData.forEach(o => { oddsMap[`${o.home}|${o.away}`] = o; });
+
+    document.getElementById("upcoming-cards").innerHTML = DATA.upcomingCards.map(card => {
+      const best = Math.max(card.ph, card.pd, card.pa);
+      const mkt = oddsMap[`${card.home}|${card.away}`];
+
+      function wdlCol(label, modelP, mktP) {
+        const isBest = modelP === best;
+        const edgeHtml = mktP != null
+          ? (() => {
+              const edge = (modelP - mktP) * 100;
+              const cls = edge > 1 ? "pos" : edge < -1 ? "neg" : "";
+              const sign = edge > 0 ? "+" : "";
+              return `<span class="uwdl-mkt">${Math.round(mktP*100)}% mkt</span>`
+                   + (cls ? `<span class="uwdl-edge ${cls}">${sign}${edge.toFixed(1)} edge</span>` : "");
+            })()
+          : "";
+        return `<div class="uwdl-col">
+          <span class="uwdl-label">${label}</span>
+          <span class="uwdl-model${isBest ? " best" : ""}">${Math.round(modelP*100)}%</span>
+          ${edgeHtml}
+        </div>`;
+      }
+
+      return `<div class="ucard">
+        <div class="ucard-head">
+          <div class="ucard-matchup">${flag(card.home)}<span>${nm(card.home)}</span>
+            <span style="color:var(--faint);font-weight:400">vs</span>
+            <span>${nm(card.away)}</span>${flag(card.away)}</div>
+          <div class="ucard-meta">${card.date} &nbsp;·&nbsp; xG&nbsp;${card.expH}&ndash;${card.expA}</div>
+        </div>
+        <div class="ucard-wdl">
+          ${wdlCol(nm(card.home), card.ph, mkt?.ph)}
+          ${wdlCol("Draw", card.pd, mkt?.pd)}
+          ${wdlCol(nm(card.away), card.pa, mkt?.pa)}
+        </div>
+        <div class="hmap-wrap">${buildHmap(card.grid)}</div>
+      </div>`;
+    }).join("");
+  });
+}
+
+// === Upset / movers tracker ===
+fetch("upsets.json").then(r => r.ok ? r.json() : null).catch(() => null).then(data => {
+  if (!data || !data.movers || !data.movers.length) return;
+  document.getElementById("movers-section").style.display = "";
+
+  if (data.results && data.results.length) {
+    document.getElementById("movers-results").textContent =
+      "Locked in: " + data.results.map(r =>
+        `${nm(r.home_team)} ${r.home_score}–${r.away_score} ${nm(r.away_team)}`
+      ).join(" · ");
+  }
+
+  document.getElementById("movers-pills").innerHTML = data.movers.map(m => {
+    const sign = m.delta > 0 ? "+" : "";
+    const cls = m.delta > 0 ? "up" : "dn";
+    return `<div class="mpill">${flag(m.team)}<span>${nm(m.team)}</span>
+      <span class="mdelta ${cls}">${sign}${(m.delta*100).toFixed(1)}%</span></div>`;
+  }).join("");
+});
 
 // Results ticker — load live results from results.json, fall back to DATA.played.
 function buildTicker(results) {

@@ -308,6 +308,41 @@ ISO2 = {
 }
 
 
+def compute_upcoming_cards(model, base_states, fixtures, played):
+    """Score probability grids for unplayed WC group-stage matches in the next 48 hours."""
+    today = pd.Timestamp.utcnow().normalize().tz_localize(None)
+    cutoff = today + pd.Timedelta(days=2)
+    played_keys = set(zip(
+        played.date.dt.date.astype(str), played.home_team, played.away_team
+    ))
+    cards = []
+    for m in fixtures.itertuples():
+        if not (today <= m.date <= cutoff):
+            continue
+        if (str(m.date.date()), m.home_team, m.away_team) in played_keys:
+            continue
+        if m.home_team not in base_states or m.away_team not in base_states:
+            continue
+        sh, sa = base_states[m.home_team], base_states[m.away_team]
+        lh, la = model.lambdas(sh, sa, m.date, home_is_home=not m.neutral)
+        grid = model.score_grid(lh, la)
+        sub = grid[:6, :6].copy()
+        if sub.sum() > 0:
+            sub /= sub.sum()
+        cards.append({
+            "home": m.home_team,
+            "away": m.away_team,
+            "date": str(m.date.date()),
+            "ph": round(float(np.tril(grid, -1).sum()), 3),
+            "pd": round(float(np.trace(grid)), 3),
+            "pa": round(float(np.triu(grid, 1).sum()), 3),
+            "expH": round(float(lh), 2),
+            "expA": round(float(la), 2),
+            "grid": [[round(float(sub[i, j]), 4) for j in range(6)] for i in range(6)],
+        })
+    return cards
+
+
 def win_prob(model, states, ta, tb, date, neutral):
     """P(ta advances past tb), including extra time/penalties on a draw."""
     sa, sb = states[ta], states[tb]
@@ -403,11 +438,13 @@ def main(n_sims=10000):
     print(show.head(20).to_string())
     print(f"\nsaved -> {RESULTS / 'sim_results.csv'}")
 
+    upcoming_cards = compute_upcoming_cards(model, base_states, fixtures, played)
+    print(f"{len(upcoming_cards)} upcoming match card(s) generated")
     export_dashboard(model, base_states, played, n_sims, out,
-                     pos_counts, thirdq, pts_sum, gd_sum)
+                     pos_counts, thirdq, pts_sum, gd_sum, upcoming_cards)
 
 
-def export_dashboard(model, base_states, played, n, out, pos_counts, thirdq, pts_sum, gd_sum):
+def export_dashboard(model, base_states, played, n, out, pos_counts, thirdq, pts_sum, gd_sum, upcoming_cards):
     group_order = {
         g: sorted(GROUPS[g], key=lambda t: (-pts_sum[t], -pos_counts[t][0]))
         for g in GROUPS
@@ -440,6 +477,7 @@ def export_dashboard(model, base_states, played, n, out, pos_counts, thirdq, pts
         "codes": ISO2,
         "groups": groups_json,
         "titleOdds": odds,
+        "upcomingCards": upcoming_cards,
         "bracket": bracket,
         "played": [
             {"home": m.home_team, "away": m.away_team,
@@ -452,6 +490,11 @@ def export_dashboard(model, base_states, played, n, out, pos_counts, thirdq, pts
     with open(docs / "data.js", "w", encoding="utf-8") as f:
         f.write("const DATA = " + json.dumps(data, ensure_ascii=False) + ";\n")
     print(f"dashboard data -> {docs / 'data.js'}")
+
+    # Snapshot of champion probabilities for the upset tracker.
+    with open(docs / "odds_snapshot.json", "w", encoding="utf-8") as f:
+        json.dump({o["team"]: o["champion"] for o in odds}, f)
+    print(f"odds snapshot   -> {docs / 'odds_snapshot.json'}")
 
 
 if __name__ == "__main__":

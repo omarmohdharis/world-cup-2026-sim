@@ -35,7 +35,46 @@ NAME_MAP = {
     "Bosnia-Herzegovina": "Bosnia and Herzegovina",
     "Curaçao": "Curaçao",
     "Czechia": "Czech Republic",
+    "Cape Verde Islands": "Cape Verde",
 }
+
+
+def load_odds_snapshot():
+    path = DOCS / "odds_snapshot.json"
+    if path.exists():
+        with open(path) as f:
+            return json.load(f)
+    return {}
+
+
+def write_upsets(prev_snapshot, new_results):
+    """Diff champion odds before vs after this run; write docs/upsets.json."""
+    snap_path = DOCS / "odds_snapshot.json"
+    if not prev_snapshot or not snap_path.exists():
+        return
+    with open(snap_path) as f:
+        new_snap = json.load(f)
+    movers = sorted(
+        [
+            {
+                "team": t,
+                "before": round(prev_snapshot.get(t, v), 4),
+                "after": round(v, 4),
+                "delta": round(v - prev_snapshot.get(t, v), 4),
+            }
+            for t, v in new_snap.items()
+            if abs(v - prev_snapshot.get(t, v)) > 0.0001
+        ],
+        key=lambda x: abs(x["delta"]),
+        reverse=True,
+    )
+    with open(DOCS / "upsets.json", "w", encoding="utf-8") as f:
+        json.dump({"results": new_results, "movers": movers[:8]}, f,
+                  ensure_ascii=False, indent=2)
+    if movers:
+        print(f"  Upset tracker: top mover -> {movers[0]['team']} "
+              f"({'+' if movers[0]['delta'] > 0 else ''}"
+              f"{movers[0]['delta']*100:.1f}%)")
 
 
 def fetch_api():
@@ -99,7 +138,7 @@ def update_matches(api_data: dict) -> int:
     else:
         print("  No new matches since last update.")
 
-    return len(new_rows)
+    return new_rows
 
 
 def update_ticker(api_data: dict):
@@ -147,18 +186,29 @@ def main():
     total = sum(1 for m in api_data.get("matches", []) if m["status"] == "FINISHED")
     print(f"  API returned {total} finished match(es)")
 
+    prev_snapshot = load_odds_snapshot()
+
     print("\n&gt; Updating matches.csv...")
-    added = update_matches(api_data)
+    new_results = update_matches(api_data)
 
     print("\n&gt; Updating ticker (results.json)...")
     update_ticker(api_data)
 
-    if added > 0:
+    if new_results:
         run(["src/build_features.py"], "Rebuilding features (Elo + form)")
     else:
         print("\n&gt; Skipping feature rebuild — no new matches")
 
-    run([f"src/simulate.py", str(args.sims)], f"Re-running simulation ({args.sims:,} sims)")
+    odds_key = os.environ.get("ODDS_API_KEY", "")
+    if odds_key:
+        run(["src/fetch_odds.py"], "Fetching market odds")
+    else:
+        print("\n&gt; Skipping odds fetch — ODDS_API_KEY not set")
+
+    run(["src/simulate.py", str(args.sims)], f"Re-running simulation ({args.sims:,} sims)")
+
+    print("\n&gt; Computing upset tracker...")
+    write_upsets(prev_snapshot, new_results)
 
     print("\n" + "-" * 52)
     print("Update complete. Refresh the dashboard to see new probabilities.")
