@@ -181,6 +181,12 @@ def main():
     print("WC 2026 -- full pipeline update")
     print("-" * 52)
 
+    if not (DATA / "matches.csv").exists():
+        print("\n&gt; First run — bootstrapping pipeline from raw data...")
+        run(["src/preprocess.py"], "Preprocessing raw data")
+        run(["src/build_features.py"], "Building features")
+        run(["src/train_model.py"], "Training model")
+
     print("\n&gt; Fetching results from football-data.org...")
     api_data = fetch_api()
     total = sum(1 for m in api_data.get("matches", []) if m["status"] == "FINISHED")
