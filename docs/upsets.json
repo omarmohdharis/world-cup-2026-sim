@@ -194,56 +194,69 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "draw"
+    },
+    {
+      "date": "2026-06-16",
+      "home_team": "France",
+      "away_team": "Senegal",
+      "home_score": 3,
+      "away_score": 1,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "home_win"
     }
   ],
   "movers": [
     {
+      "team": "France",
+      "before": 0.0905,
+      "after": 0.1204,
+      "delta": 0.0299
+    },
+    {
       "team": "Argentina",
-      "before": 0.1644,
-      "after": 0.1699,
-      "delta": 0.0055
+      "before": 0.1699,
+      "after": 0.1627,
+      "delta": -0.0072
+    },
+    {
+      "team": "Germany",
+      "before": 0.0434,
+      "after": 0.0371,
+      "delta": -0.0063
+    },
+    {
+      "team": "Australia",
+      "before": 0.0206,
+      "after": 0.0144,
+      "delta": -0.0062
+    },
+    {
+      "team": "Senegal",
+      "before": 0.0097,
+      "after": 0.0058,
+      "delta": -0.0039
     },
     {
       "team": "England",
-      "before": 0.0798,
-      "after": 0.0757,
-      "delta": -0.0041
-    },
-    {
-      "team": "Uruguay",
-      "before": 0.0119,
-      "after": 0.0151,
-      "delta": 0.0032
-    },
-    {
-      "team": "Mexico",
-      "before": 0.0278,
-      "after": 0.025,
-      "delta": -0.0028
-    },
-    {
-      "team": "Brazil",
-      "before": 0.0423,
-      "after": 0.0396,
-      "delta": -0.0027
-    },
-    {
-      "team": "United States",
-      "before": 0.0157,
-      "after": 0.013,
-      "delta": -0.0027
+      "before": 0.0757,
+      "after": 0.0786,
+      "delta": 0.0029
     },
     {
       "team": "Spain",
-      "before": 0.155,
-      "after": 0.1576,
-      "delta": 0.0026
+      "before": 0.1576,
+      "after": 0.1603,
+      "delta": 0.0027
     },
     {
-      "team": "France",
-      "before": 0.0883,
-      "after": 0.0905,
-      "delta": 0.0022
+      "team": "Morocco",
+      "before": 0.0236,
+      "after": 0.0209,
+      "delta": -0.0027
     }
   ]
 }
