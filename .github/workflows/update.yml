@@ -37,7 +37,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data.js docs/results.json docs/odds_snapshot.json data/processed/matches.csv
-          git add docs/odds.json docs/upsets.json 2>/dev/null || true
+          git add docs/data.js docs/results.json docs/odds_snapshot.json
+          git add docs/odds.json docs/upsets.json || true
           git diff --cached --quiet || git commit -m "chore: update predictions $(date -u +%Y-%m-%d\ %H:%M)"
           git push
