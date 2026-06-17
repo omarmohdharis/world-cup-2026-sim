@@ -207,56 +207,82 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "home_win"
+    },
+    {
+      "date": "2026-06-16",
+      "home_team": "Iraq",
+      "away_team": "Norway",
+      "home_score": 1,
+      "away_score": 4,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "away_win"
+    },
+    {
+      "date": "2026-06-17",
+      "home_team": "Argentina",
+      "away_team": "Algeria",
+      "home_score": 3,
+      "away_score": 0,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "home_win"
     }
   ],
   "movers": [
     {
-      "team": "France",
-      "before": 0.0905,
-      "after": 0.1204,
-      "delta": 0.0299
-    },
-    {
       "team": "Argentina",
-      "before": 0.1699,
-      "after": 0.1627,
-      "delta": -0.0072
+      "before": 0.1627,
+      "after": 0.189,
+      "delta": 0.0263
     },
     {
-      "team": "Germany",
-      "before": 0.0434,
-      "after": 0.0371,
-      "delta": -0.0063
+      "team": "France",
+      "before": 0.1204,
+      "after": 0.1102,
+      "delta": -0.0102
     },
     {
-      "team": "Australia",
-      "before": 0.0206,
-      "after": 0.0144,
-      "delta": -0.0062
-    },
-    {
-      "team": "Senegal",
-      "before": 0.0097,
-      "after": 0.0058,
-      "delta": -0.0039
+      "team": "Norway",
+      "before": 0.0173,
+      "after": 0.0274,
+      "delta": 0.0101
     },
     {
       "team": "England",
-      "before": 0.0757,
-      "after": 0.0786,
-      "delta": 0.0029
+      "before": 0.0786,
+      "after": 0.0714,
+      "delta": -0.0072
+    },
+    {
+      "team": "Japan",
+      "before": 0.0257,
+      "after": 0.022,
+      "delta": -0.0037
     },
     {
       "team": "Spain",
-      "before": 0.1576,
-      "after": 0.1603,
-      "delta": 0.0027
+      "before": 0.1603,
+      "after": 0.1571,
+      "delta": -0.0032
     },
     {
-      "team": "Morocco",
-      "before": 0.0236,
-      "after": 0.0209,
-      "delta": -0.0027
+      "team": "Algeria",
+      "before": 0.0065,
+      "after": 0.0034,
+      "delta": -0.0031
+    },
+    {
+      "team": "Australia",
+      "before": 0.0144,
+      "after": 0.0172,
+      "delta": 0.0028
     }
   ]
 }
