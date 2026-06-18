@@ -298,56 +298,69 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "away_win"
+    },
+    {
+      "date": "2026-06-18",
+      "home_team": "Czech Republic",
+      "away_team": "South Africa",
+      "home_score": 1,
+      "away_score": 1,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "draw"
     }
   ],
   "movers": [
     {
-      "team": "Spain",
-      "before": 0.1567,
-      "after": 0.1493,
-      "delta": -0.0074
-    },
-    {
-      "team": "Norway",
-      "before": 0.0296,
-      "after": 0.0234,
-      "delta": -0.0062
-    },
-    {
-      "team": "Germany",
-      "before": 0.0348,
-      "after": 0.0408,
-      "delta": 0.006
-    },
-    {
       "team": "Argentina",
-      "before": 0.1796,
-      "after": 0.1844,
-      "delta": 0.0048
+      "before": 0.1844,
+      "after": 0.1799,
+      "delta": -0.0045
     },
     {
-      "team": "France",
-      "before": 0.1028,
-      "after": 0.107,
-      "delta": 0.0042
+      "team": "South Korea",
+      "before": 0.0125,
+      "after": 0.0081,
+      "delta": -0.0044
     },
     {
       "team": "Colombia",
-      "before": 0.0639,
-      "after": 0.0602,
-      "delta": -0.0037
+      "before": 0.0602,
+      "after": 0.0642,
+      "delta": 0.004
     },
     {
-      "team": "United States",
-      "before": 0.0113,
-      "after": 0.015,
-      "delta": 0.0037
+      "team": "Germany",
+      "before": 0.0408,
+      "after": 0.0369,
+      "delta": -0.0039
+    },
+    {
+      "team": "Morocco",
+      "before": 0.0221,
+      "after": 0.0185,
+      "delta": -0.0036
+    },
+    {
+      "team": "France",
+      "before": 0.107,
+      "after": 0.1101,
+      "delta": 0.0031
     },
     {
       "team": "Brazil",
-      "before": 0.04,
-      "after": 0.0435,
-      "delta": 0.0035
+      "before": 0.0435,
+      "after": 0.0406,
+      "delta": -0.0029
+    },
+    {
+      "team": "Australia",
+      "before": 0.0171,
+      "after": 0.02,
+      "delta": 0.0029
     }
   ]
 }
