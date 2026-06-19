@@ -350,56 +350,69 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "home_win"
+    },
+    {
+      "date": "2026-06-19",
+      "home_team": "United States",
+      "away_team": "Australia",
+      "home_score": 2,
+      "away_score": 0,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "home_win"
     }
   ],
   "movers": [
     {
+      "team": "United States",
+      "before": 0.0142,
+      "after": 0.0282,
+      "delta": 0.014
+    },
+    {
+      "team": "Australia",
+      "before": 0.0167,
+      "after": 0.0069,
+      "delta": -0.0098
+    },
+    {
       "team": "France",
-      "before": 0.1074,
-      "after": 0.1152,
-      "delta": 0.0078
-    },
-    {
-      "team": "Argentina",
-      "before": 0.183,
-      "after": 0.1788,
-      "delta": -0.0042
-    },
-    {
-      "team": "England",
-      "before": 0.0919,
-      "after": 0.0878,
-      "delta": -0.0041
+      "before": 0.1152,
+      "after": 0.1076,
+      "delta": -0.0076
     },
     {
       "team": "Brazil",
-      "before": 0.0391,
-      "after": 0.0426,
-      "delta": 0.0035
+      "before": 0.0426,
+      "after": 0.0366,
+      "delta": -0.006
     },
     {
-      "team": "Mexico",
-      "before": 0.0329,
-      "after": 0.0304,
-      "delta": -0.0025
+      "team": "Argentina",
+      "before": 0.1788,
+      "after": 0.1844,
+      "delta": 0.0056
     },
     {
       "team": "Spain",
-      "before": 0.1528,
-      "after": 0.1544,
-      "delta": 0.0016
+      "before": 0.1544,
+      "after": 0.1593,
+      "delta": 0.0049
     },
     {
-      "team": "Paraguay",
-      "before": 0.0018,
-      "after": 0.0034,
-      "delta": 0.0016
+      "team": "England",
+      "before": 0.0878,
+      "after": 0.0829,
+      "delta": -0.0049
     },
     {
-      "team": "United States",
-      "before": 0.0127,
-      "after": 0.0142,
-      "delta": 0.0015
+      "team": "Germany",
+      "before": 0.0369,
+      "after": 0.0335,
+      "delta": -0.0034
     }
   ]
 }
