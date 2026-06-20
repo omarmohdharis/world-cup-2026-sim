@@ -415,56 +415,69 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "home_win"
+    },
+    {
+      "date": "2026-06-20",
+      "home_team": "Germany",
+      "away_team": "Ivory Coast",
+      "home_score": 2,
+      "away_score": 1,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "home_win"
     }
   ],
   "movers": [
     {
-      "team": "Netherlands",
-      "before": 0.0254,
-      "after": 0.0419,
-      "delta": 0.0165
+      "team": "France",
+      "before": 0.1043,
+      "after": 0.0945,
+      "delta": -0.0098
     },
     {
-      "team": "Argentina",
-      "before": 0.183,
-      "after": 0.1779,
-      "delta": -0.0051
-    },
-    {
-      "team": "Portugal",
-      "before": 0.034,
-      "after": 0.0292,
-      "delta": -0.0048
-    },
-    {
-      "team": "Morocco",
-      "before": 0.0276,
-      "after": 0.0237,
-      "delta": -0.0039
+      "team": "Germany",
+      "before": 0.0378,
+      "after": 0.0445,
+      "delta": 0.0067
     },
     {
       "team": "Ecuador",
-      "before": 0.0172,
-      "after": 0.0211,
-      "delta": 0.0039
+      "before": 0.0211,
+      "after": 0.0165,
+      "delta": -0.0046
     },
     {
-      "team": "United States",
-      "before": 0.026,
-      "after": 0.0293,
-      "delta": 0.0033
+      "team": "Portugal",
+      "before": 0.0292,
+      "after": 0.0335,
+      "delta": 0.0043
     },
     {
       "team": "Brazil",
-      "before": 0.0471,
-      "after": 0.0451,
-      "delta": -0.002
+      "before": 0.0451,
+      "after": 0.0485,
+      "delta": 0.0034
     },
     {
-      "team": "Mexico",
-      "before": 0.0294,
-      "after": 0.0274,
-      "delta": -0.002
+      "team": "Argentina",
+      "before": 0.1779,
+      "after": 0.1749,
+      "delta": -0.003
+    },
+    {
+      "team": "Colombia",
+      "before": 0.0559,
+      "after": 0.0586,
+      "delta": 0.0027
+    },
+    {
+      "team": "United States",
+      "before": 0.0293,
+      "after": 0.0271,
+      "delta": -0.0022
     }
   ]
 }
