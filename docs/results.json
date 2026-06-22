@@ -1,5 +1,11 @@
 [
   {
+    "home": "New Zealand",
+    "away": "Egypt",
+    "score": "1–3",
+    "date": "2026-06-22"
+  },
+  {
     "home": "Ecuador",
     "away": "Curaçao",
     "score": "0–0",
@@ -21,6 +27,12 @@
     "home": "Belgium",
     "away": "Iran",
     "score": "0–0",
+    "date": "2026-06-21"
+  },
+  {
+    "home": "Uruguay",
+    "away": "Cape Verde",
+    "score": "2–2",
     "date": "2026-06-21"
   },
   {
@@ -213,12 +225,6 @@
     "home": "South Korea",
     "away": "Czech Republic",
     "score": "2–1",
-    "date": "2026-06-12"
-  },
-  {
-    "home": "Canada",
-    "away": "Bosnia and Herzegovina",
-    "score": "1–1",
     "date": "2026-06-12"
   },
   {
