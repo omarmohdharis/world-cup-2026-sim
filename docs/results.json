@@ -1,5 +1,11 @@
 [
   {
+    "home": "Norway",
+    "away": "Senegal",
+    "score": "3–2",
+    "date": "2026-06-23"
+  },
+  {
     "home": "New Zealand",
     "away": "Egypt",
     "score": "1–3",
@@ -9,6 +15,12 @@
     "home": "Argentina",
     "away": "Austria",
     "score": "2–0",
+    "date": "2026-06-22"
+  },
+  {
+    "home": "France",
+    "away": "Iraq",
+    "score": "3–0",
     "date": "2026-06-22"
   },
   {
