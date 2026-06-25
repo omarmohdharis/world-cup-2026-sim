@@ -14,19 +14,6 @@
       "outcome": "home_win"
     },
     {
-      "date": "2026-06-12",
-      "home_team": "Canada",
-      "away_team": "Bosnia and Herzegovina",
-      "home_score": 1,
-      "away_score": 1,
-      "tournament": "FIFA World Cup",
-      "city": "",
-      "country": "United States",
-      "neutral": true,
-      "shootout_winner": null,
-      "outcome": "draw"
-    },
-    {
       "date": "2026-06-13",
       "home_team": "United States",
       "away_team": "Paraguay",
@@ -636,56 +623,108 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "home_win"
+    },
+    {
+      "date": "2026-06-24",
+      "home_team": "Morocco",
+      "away_team": "Haiti",
+      "home_score": 4,
+      "away_score": 2,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "home_win"
+    },
+    {
+      "date": "2026-06-24",
+      "home_team": "Scotland",
+      "away_team": "Brazil",
+      "home_score": 0,
+      "away_score": 3,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "away_win"
+    },
+    {
+      "date": "2026-06-25",
+      "home_team": "Czech Republic",
+      "away_team": "Mexico",
+      "home_score": 0,
+      "away_score": 3,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "away_win"
+    },
+    {
+      "date": "2026-06-25",
+      "home_team": "South Africa",
+      "away_team": "South Korea",
+      "home_score": 1,
+      "away_score": 0,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "home_win"
     }
   ],
   "movers": [
     {
       "team": "Argentina",
-      "before": 0.1943,
-      "after": 0.2025,
-      "delta": 0.0082
+      "before": 0.2025,
+      "after": 0.1877,
+      "delta": -0.0148
     },
     {
-      "team": "France",
-      "before": 0.1154,
-      "after": 0.109,
-      "delta": -0.0064
+      "team": "Brazil",
+      "before": 0.0442,
+      "after": 0.0546,
+      "delta": 0.0104
     },
     {
-      "team": "Spain",
-      "before": 0.1681,
-      "after": 0.162,
-      "delta": -0.0061
-    },
-    {
-      "team": "Switzerland",
-      "before": 0.012,
-      "after": 0.0178,
-      "delta": 0.0058
-    },
-    {
-      "team": "Canada",
-      "before": 0.0096,
-      "after": 0.005,
-      "delta": -0.0046
-    },
-    {
-      "team": "United States",
-      "before": 0.023,
-      "after": 0.027,
-      "delta": 0.004
+      "team": "Mexico",
+      "before": 0.0272,
+      "after": 0.0334,
+      "delta": 0.0062
     },
     {
       "team": "South Korea",
-      "before": 0.0046,
-      "after": 0.0079,
-      "delta": 0.0033
+      "before": 0.0079,
+      "after": 0.0032,
+      "delta": -0.0047
     },
     {
-      "team": "Ecuador",
-      "before": 0.0137,
-      "after": 0.0113,
-      "delta": -0.0024
+      "team": "France",
+      "before": 0.109,
+      "after": 0.1132,
+      "delta": 0.0042
+    },
+    {
+      "team": "Portugal",
+      "before": 0.0456,
+      "after": 0.0493,
+      "delta": 0.0037
+    },
+    {
+      "team": "Croatia",
+      "before": 0.0125,
+      "after": 0.0092,
+      "delta": -0.0033
+    },
+    {
+      "team": "England",
+      "before": 0.0613,
+      "after": 0.0586,
+      "delta": -0.0027
     }
   ]
 }
