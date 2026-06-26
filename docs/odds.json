@@ -1,146 +1,130 @@
 [
   {
-    "home": "Japan",
-    "away": "Sweden",
-    "date": "2026-06-25",
-    "ph": 0.4371,
-    "pd": 0.2815,
-    "pa": 0.2814
-  },
-  {
-    "home": "Tunisia",
-    "away": "Netherlands",
-    "date": "2026-06-25",
-    "ph": 0.0385,
-    "pd": 0.0926,
-    "pa": 0.869
-  },
-  {
-    "home": "Paraguay",
-    "away": "Australia",
-    "date": "2026-06-26",
-    "ph": 0.3612,
-    "pd": 0.42,
-    "pa": 0.2187
-  },
-  {
-    "home": "Turkey",
-    "away": "United States",
-    "date": "2026-06-26",
-    "ph": 0.2441,
-    "pd": 0.2291,
-    "pa": 0.5268
-  },
-  {
     "home": "Norway",
     "away": "France",
     "date": "2026-06-26",
-    "ph": 0.1877,
-    "pd": 0.212,
-    "pa": 0.6002
+    "ph": 0.1905,
+    "pd": 0.209,
+    "pa": 0.6005
   },
   {
     "home": "Senegal",
     "away": "Iraq",
     "date": "2026-06-26",
-    "ph": 0.7811,
-    "pd": 0.1442,
-    "pa": 0.0747
+    "ph": 0.7854,
+    "pd": 0.1421,
+    "pa": 0.0726
   },
   {
     "home": "Cape Verde",
     "away": "Saudi Arabia",
     "date": "2026-06-27",
-    "ph": 0.3592,
-    "pd": 0.2862,
-    "pa": 0.3545
+    "ph": 0.3626,
+    "pd": 0.2872,
+    "pa": 0.3502
   },
   {
     "home": "Uruguay",
     "away": "Spain",
     "date": "2026-06-27",
-    "ph": 0.1303,
-    "pd": 0.2282,
-    "pa": 0.6415
+    "ph": 0.1282,
+    "pd": 0.2359,
+    "pa": 0.6359
   },
   {
     "home": "New Zealand",
     "away": "Belgium",
     "date": "2026-06-27",
-    "ph": 0.0567,
-    "pd": 0.1214,
-    "pa": 0.8219
+    "ph": 0.0574,
+    "pd": 0.1215,
+    "pa": 0.8211
   },
   {
     "home": "Egypt",
     "away": "Iran",
     "date": "2026-06-27",
-    "ph": 0.3891,
-    "pd": 0.3593,
-    "pa": 0.2516
+    "ph": 0.3871,
+    "pd": 0.3632,
+    "pa": 0.2496
   },
   {
     "home": "Croatia",
     "away": "Ghana",
     "date": "2026-06-27",
     "ph": 0.5359,
-    "pd": 0.2914,
-    "pa": 0.1727
+    "pd": 0.2933,
+    "pa": 0.1708
   },
   {
     "home": "Panama",
     "away": "England",
     "date": "2026-06-27",
-    "ph": 0.0574,
-    "pd": 0.1201,
-    "pa": 0.8224
+    "ph": 0.0571,
+    "pd": 0.1196,
+    "pa": 0.8233
   },
   {
     "home": "Colombia",
     "away": "Portugal",
     "date": "2026-06-27",
-    "ph": 0.2261,
-    "pd": 0.2561,
-    "pa": 0.5179
+    "ph": 0.23,
+    "pd": 0.2581,
+    "pa": 0.5118
   },
   {
     "home": "DR Congo",
     "away": "Uzbekistan",
     "date": "2026-06-27",
-    "ph": 0.5473,
-    "pd": 0.235,
-    "pa": 0.2177
+    "ph": 0.5553,
+    "pd": 0.2315,
+    "pa": 0.2132
   },
   {
     "home": "Algeria",
     "away": "Austria",
     "date": "2026-06-28",
-    "ph": 0.2484,
-    "pd": 0.4175,
-    "pa": 0.3341
+    "ph": 0.242,
+    "pd": 0.426,
+    "pa": 0.332
   },
   {
     "home": "Jordan",
     "away": "Argentina",
     "date": "2026-06-28",
-    "ph": 0.0622,
-    "pd": 0.1296,
-    "pa": 0.8082
+    "ph": 0.0618,
+    "pd": 0.1276,
+    "pa": 0.8106
   },
   {
     "home": "South Africa",
     "away": "Canada",
     "date": "2026-06-28",
-    "ph": 0.175,
-    "pd": 0.2631,
-    "pa": 0.5619
+    "ph": 0.1746,
+    "pd": 0.2634,
+    "pa": 0.562
+  },
+  {
+    "home": "Brazil",
+    "away": "Japan",
+    "date": "2026-06-29",
+    "ph": 0.5415,
+    "pd": 0.2613,
+    "pa": 0.1972
+  },
+  {
+    "home": "Netherlands",
+    "away": "Morocco",
+    "date": "2026-06-30",
+    "ph": 0.4587,
+    "pd": 0.2854,
+    "pa": 0.2558
   },
   {
     "home": "United States",
     "away": "Bosnia & Herzegovina",
     "date": "2026-07-02",
-    "ph": 0.5902,
-    "pd": 0.2628,
-    "pa": 0.147
+    "ph": 0.6083,
+    "pd": 0.2353,
+    "pa": 0.1564
   }
 ]
