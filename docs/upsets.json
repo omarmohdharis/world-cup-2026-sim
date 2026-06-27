@@ -792,56 +792,82 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "home_win"
+    },
+    {
+      "date": "2026-06-27",
+      "home_team": "Uruguay",
+      "away_team": "Spain",
+      "home_score": 0,
+      "away_score": 1,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "away_win"
+    },
+    {
+      "date": "2026-06-27",
+      "home_team": "Cape Verde",
+      "away_team": "Saudi Arabia",
+      "home_score": 0,
+      "away_score": 0,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "draw"
     }
   ],
   "movers": [
     {
-      "team": "France",
-      "before": 0.1153,
-      "after": 0.1564,
-      "delta": 0.0411
+      "team": "Argentina",
+      "before": 0.1841,
+      "after": 0.1956,
+      "delta": 0.0115
     },
     {
-      "team": "Norway",
-      "before": 0.025,
-      "after": 0.0143,
-      "delta": -0.0107
+      "team": "Brazil",
+      "before": 0.0596,
+      "after": 0.0549,
+      "delta": -0.0047
     },
     {
       "team": "Colombia",
-      "before": 0.0635,
-      "after": 0.0569,
-      "delta": -0.0066
+      "before": 0.0569,
+      "after": 0.0539,
+      "delta": -0.003
     },
     {
-      "team": "England",
-      "before": 0.0615,
-      "after": 0.0553,
-      "delta": -0.0062
+      "team": "Mexico",
+      "before": 0.0363,
+      "after": 0.0333,
+      "delta": -0.003
     },
     {
-      "team": "Argentina",
-      "before": 0.19,
-      "after": 0.1841,
-      "delta": -0.0059
+      "team": "United States",
+      "before": 0.0159,
+      "after": 0.0132,
+      "delta": -0.0027
     },
     {
-      "team": "Senegal",
-      "before": 0.0015,
-      "after": 0.0064,
-      "delta": 0.0049
+      "team": "Uruguay",
+      "before": 0.0078,
+      "after": 0.0055,
+      "delta": -0.0023
     },
     {
-      "team": "Portugal",
-      "before": 0.0459,
-      "after": 0.0416,
-      "delta": -0.0043
+      "team": "Spain",
+      "before": 0.1593,
+      "after": 0.1615,
+      "delta": 0.0022
     },
     {
-      "team": "Japan",
-      "before": 0.0233,
-      "after": 0.0191,
-      "delta": -0.0042
+      "team": "Germany",
+      "before": 0.0204,
+      "after": 0.0225,
+      "delta": 0.0021
     }
   ]
 }
