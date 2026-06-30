@@ -974,56 +974,69 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "away_win"
+    },
+    {
+      "date": "2026-06-30",
+      "home_team": "Ivory Coast",
+      "away_team": "Norway",
+      "home_score": 1,
+      "away_score": 2,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "away_win"
     }
   ],
   "movers": [
     {
       "team": "Argentina",
-      "before": 0.1978,
-      "after": 0.2052,
-      "delta": 0.0074
+      "before": 0.2052,
+      "after": 0.1974,
+      "delta": -0.0078
     },
     {
-      "team": "Mexico",
-      "before": 0.0275,
-      "after": 0.032,
-      "delta": 0.0045
-    },
-    {
-      "team": "Netherlands",
-      "before": 0.0243,
-      "after": 0.0211,
-      "delta": -0.0032
-    },
-    {
-      "team": "Ecuador",
-      "before": 0.0208,
-      "after": 0.018,
-      "delta": -0.0028
-    },
-    {
-      "team": "Portugal",
-      "before": 0.0372,
-      "after": 0.0348,
-      "delta": -0.0024
+      "team": "Norway",
+      "before": 0.0129,
+      "after": 0.0192,
+      "delta": 0.0063
     },
     {
       "team": "Colombia",
-      "before": 0.0542,
-      "after": 0.052,
-      "delta": -0.0022
+      "before": 0.052,
+      "after": 0.0558,
+      "delta": 0.0038
     },
     {
-      "team": "England",
-      "before": 0.0587,
-      "after": 0.0608,
-      "delta": 0.0021
+      "team": "Portugal",
+      "before": 0.0348,
+      "after": 0.0383,
+      "delta": 0.0035
+    },
+    {
+      "team": "United States",
+      "before": 0.0134,
+      "after": 0.0106,
+      "delta": -0.0028
+    },
+    {
+      "team": "Croatia",
+      "before": 0.011,
+      "after": 0.0137,
+      "delta": 0.0027
     },
     {
       "team": "Spain",
-      "before": 0.1689,
-      "after": 0.1675,
-      "delta": -0.0014
+      "before": 0.1675,
+      "after": 0.1649,
+      "delta": -0.0026
+    },
+    {
+      "team": "Mexico",
+      "before": 0.032,
+      "after": 0.0296,
+      "delta": -0.0024
     }
   ]
 }
