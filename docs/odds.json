@@ -1,98 +1,90 @@
 [
   {
-    "home": "Belgium",
-    "away": "Senegal",
-    "date": "2026-07-01",
-    "ph": 0.2053,
-    "pd": 0.7107,
-    "pa": 0.084
-  },
-  {
-    "home": "United States",
-    "away": "Bosnia & Herzegovina",
-    "date": "2026-07-02",
-    "ph": 0.7064,
-    "pd": 0.1876,
-    "pa": 0.1061
-  },
-  {
     "home": "Spain",
     "away": "Austria",
     "date": "2026-07-02",
-    "ph": 0.7226,
-    "pd": 0.1827,
-    "pa": 0.0948
+    "ph": 0.7237,
+    "pd": 0.1814,
+    "pa": 0.0949
   },
   {
     "home": "Portugal",
     "away": "Croatia",
     "date": "2026-07-02",
-    "ph": 0.5447,
-    "pd": 0.2654,
-    "pa": 0.1899
+    "ph": 0.5452,
+    "pd": 0.2626,
+    "pa": 0.1922
   },
   {
     "home": "Switzerland",
     "away": "Algeria",
     "date": "2026-07-03",
-    "ph": 0.4708,
-    "pd": 0.2947,
-    "pa": 0.2346
+    "ph": 0.4711,
+    "pd": 0.2951,
+    "pa": 0.2338
   },
   {
     "home": "Australia",
     "away": "Egypt",
     "date": "2026-07-03",
-    "ph": 0.2849,
-    "pd": 0.3308,
-    "pa": 0.3843
+    "ph": 0.2839,
+    "pd": 0.3314,
+    "pa": 0.3847
   },
   {
     "home": "Argentina",
     "away": "Cape Verde",
     "date": "2026-07-03",
-    "ph": 0.8257,
-    "pd": 0.1245,
-    "pa": 0.0497
+    "ph": 0.8248,
+    "pd": 0.1252,
+    "pa": 0.05
   },
   {
     "home": "Colombia",
     "away": "Ghana",
     "date": "2026-07-04",
-    "ph": 0.6284,
-    "pd": 0.2436,
+    "ph": 0.629,
+    "pd": 0.2429,
     "pa": 0.128
   },
   {
     "home": "Canada",
     "away": "Morocco",
     "date": "2026-07-04",
-    "ph": 0.1922,
-    "pd": 0.2774,
-    "pa": 0.5304
+    "ph": 0.1875,
+    "pd": 0.2754,
+    "pa": 0.5371
   },
   {
     "home": "Paraguay",
     "away": "France",
     "date": "2026-07-04",
-    "ph": 0.0557,
-    "pd": 0.1381,
-    "pa": 0.8063
+    "ph": 0.0555,
+    "pd": 0.1376,
+    "pa": 0.8069
   },
   {
     "home": "Brazil",
     "away": "Norway",
     "date": "2026-07-05",
-    "ph": 0.5048,
-    "pd": 0.2652,
-    "pa": 0.2301
+    "ph": 0.5065,
+    "pd": 0.2623,
+    "pa": 0.2313
   },
   {
     "home": "Mexico",
     "away": "England",
     "date": "2026-07-06",
-    "ph": 0.2873,
-    "pd": 0.3074,
-    "pa": 0.4053
+    "ph": 0.3108,
+    "pd": 0.3081,
+    "pa": 0.3811
+  },
+  {
+    "home": "United States",
+    "away": "Belgium",
+    "date": "2026-07-07",
+    "ph": 0.3718,
+    "pd": 0.2757,
+    "pa": 0.3524
   }
 ]
