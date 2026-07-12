@@ -1,18 +1,18 @@
 [
   {
-    "home": "Argentina",
-    "away": "Switzerland",
-    "date": "2026-07-12",
-    "ph": 0.8673,
-    "pd": 0.0885,
-    "pa": 0.0442
-  },
-  {
     "home": "France",
     "away": "Spain",
     "date": "2026-07-14",
-    "ph": 0.4147,
-    "pd": 0.294,
-    "pa": 0.2913
+    "ph": 0.4153,
+    "pd": 0.2945,
+    "pa": 0.2902
+  },
+  {
+    "home": "England",
+    "away": "Argentina",
+    "date": "2026-07-15",
+    "ph": 0.3779,
+    "pd": 0.3126,
+    "pa": 0.3095
   }
 ]
