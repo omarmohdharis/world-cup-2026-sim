@@ -1286,56 +1286,69 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "home_win"
+    },
+    {
+      "date": "2026-07-14",
+      "home_team": "France",
+      "away_team": "Spain",
+      "home_score": 0,
+      "away_score": 2,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "away_win"
     }
   ],
   "movers": [
     {
-      "team": "Colombia",
-      "before": 0.0266,
-      "after": 0.0326,
-      "delta": 0.006
+      "team": "Spain",
+      "before": 0.2063,
+      "after": 0.2692,
+      "delta": 0.0629
     },
     {
       "team": "France",
-      "before": 0.1876,
-      "after": 0.1829,
-      "delta": -0.0047
-    },
-    {
-      "team": "Spain",
-      "before": 0.2102,
-      "after": 0.2063,
-      "delta": -0.0039
+      "before": 0.1829,
+      "after": 0.1279,
+      "delta": -0.055
     },
     {
       "team": "Argentina",
-      "before": 0.2198,
-      "after": 0.2231,
-      "delta": 0.0033
+      "before": 0.2231,
+      "after": 0.2128,
+      "delta": -0.0103
     },
     {
-      "team": "Morocco",
-      "before": 0.0281,
-      "after": 0.0253,
-      "delta": -0.0028
+      "team": "Switzerland",
+      "before": 0.0161,
+      "after": 0.0207,
+      "delta": 0.0046
     },
     {
-      "team": "Brazil",
-      "before": 0.0336,
-      "after": 0.0363,
-      "delta": 0.0027
+      "team": "Portugal",
+      "before": 0.0312,
+      "after": 0.0285,
+      "delta": -0.0027
     },
     {
-      "team": "England",
-      "before": 0.0871,
-      "after": 0.085,
-      "delta": -0.0021
+      "team": "Germany",
+      "before": 0.0106,
+      "after": 0.0084,
+      "delta": -0.0022
+    },
+    {
+      "team": "Norway",
+      "before": 0.0179,
+      "after": 0.02,
+      "delta": 0.0021
     },
     {
       "team": "Japan",
-      "before": 0.0133,
-      "after": 0.0114,
-      "delta": -0.0019
+      "before": 0.0114,
+      "after": 0.0094,
+      "delta": -0.002
     }
   ]
 }
