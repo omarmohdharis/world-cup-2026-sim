@@ -1299,56 +1299,69 @@
       "neutral": true,
       "shootout_winner": null,
       "outcome": "away_win"
+    },
+    {
+      "date": "2026-07-15",
+      "home_team": "England",
+      "away_team": "Argentina",
+      "home_score": 1,
+      "away_score": 2,
+      "tournament": "FIFA World Cup",
+      "city": "",
+      "country": "United States",
+      "neutral": true,
+      "shootout_winner": null,
+      "outcome": "away_win"
     }
   ],
   "movers": [
     {
       "team": "Argentina",
-      "before": 0.2095,
-      "after": 0.2205,
-      "delta": 0.011
+      "before": 0.2205,
+      "after": 0.242,
+      "delta": 0.0215
     },
     {
       "team": "England",
-      "before": 0.0925,
-      "after": 0.0826,
-      "delta": -0.0099
+      "before": 0.0826,
+      "after": 0.0687,
+      "delta": -0.0139
     },
     {
       "team": "Spain",
-      "before": 0.2658,
-      "after": 0.2739,
-      "delta": 0.0081
+      "before": 0.2739,
+      "after": 0.2658,
+      "delta": -0.0081
     },
     {
       "team": "France",
-      "before": 0.1257,
-      "after": 0.1197,
-      "delta": -0.006
+      "before": 0.1197,
+      "after": 0.1251,
+      "delta": 0.0054
     },
     {
       "team": "Morocco",
-      "before": 0.0261,
-      "after": 0.0293,
-      "delta": 0.0032
+      "before": 0.0293,
+      "after": 0.0245,
+      "delta": -0.0048
     },
     {
-      "team": "Portugal",
-      "before": 0.0322,
-      "after": 0.0291,
-      "delta": -0.0031
+      "team": "Switzerland",
+      "before": 0.0159,
+      "after": 0.0186,
+      "delta": 0.0027
     },
     {
-      "team": "Egypt",
-      "before": 0.0025,
-      "after": 0.0046,
-      "delta": 0.0021
+      "team": "Belgium",
+      "before": 0.0221,
+      "after": 0.0196,
+      "delta": -0.0025
     },
     {
-      "team": "Colombia",
-      "before": 0.0301,
-      "after": 0.0281,
-      "delta": -0.002
+      "team": "Norway",
+      "before": 0.0179,
+      "after": 0.0203,
+      "delta": 0.0024
     }
   ]
 }
