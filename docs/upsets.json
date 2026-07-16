@@ -1316,52 +1316,52 @@
   ],
   "movers": [
     {
-      "team": "Spain",
-      "before": 0.2754,
-      "after": 0.2593,
-      "delta": -0.0161
-    },
-    {
-      "team": "France",
-      "before": 0.1138,
-      "after": 0.1296,
-      "delta": 0.0158
+      "team": "Portugal",
+      "before": 0.0296,
+      "after": 0.0251,
+      "delta": -0.0045
     },
     {
       "team": "Argentina",
-      "before": 0.2412,
-      "after": 0.2459,
-      "delta": 0.0047
+      "before": 0.2459,
+      "after": 0.2416,
+      "delta": -0.0043
     },
     {
-      "team": "Mexico",
-      "before": 0.0261,
-      "after": 0.0233,
-      "delta": -0.0028
+      "team": "Brazil",
+      "before": 0.0347,
+      "after": 0.0377,
+      "delta": 0.003
     },
     {
-      "team": "Netherlands",
-      "before": 0.0213,
-      "after": 0.0185,
-      "delta": -0.0028
-    },
-    {
-      "team": "Switzerland",
-      "before": 0.0199,
-      "after": 0.0173,
-      "delta": -0.0026
+      "team": "Spain",
+      "before": 0.2593,
+      "after": 0.2615,
+      "delta": 0.0022
     },
     {
       "team": "Morocco",
-      "before": 0.0265,
-      "after": 0.024,
-      "delta": -0.0025
+      "before": 0.024,
+      "after": 0.026,
+      "delta": 0.002
+    },
+    {
+      "team": "Paraguay",
+      "before": 0.0049,
+      "after": 0.0066,
+      "delta": 0.0017
     },
     {
       "team": "Germany",
-      "before": 0.0085,
-      "after": 0.0108,
-      "delta": 0.0023
+      "before": 0.0108,
+      "after": 0.0093,
+      "delta": -0.0015
+    },
+    {
+      "team": "Switzerland",
+      "before": 0.0173,
+      "after": 0.0187,
+      "delta": 0.0014
     }
   ]
 }
